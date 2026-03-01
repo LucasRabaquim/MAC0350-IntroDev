@@ -4,81 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Placeholder</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: none;
-            list-style: none;
-        }
-        .flex{display: flex;}
-        .flex-row {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .flex-col {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #decoration {
-            background-color: aquamarine;
-            border: 10px 0 10px 0;
-            border-bottom-color: #000;
-            border-top-color: #696969;
-            height: 3vh;
-            width: 100vw;
-        }
-        .nav-div{
-            border-width: 0.1vw;
-            border-color:#696969;
-            border-style: solid;
-            padding:0.1vw;
-            margin: 5vh 0 0.5vw 0;
-        }
-        .w-100{width: 100%;}
-        nav{width:10vw; font-size:1rem;}
-        main{width:85vw;}
-        .nav-div li a:hover, #nav-div-highlight{background-color: #696969; color:#fff}
-        .nav-div li a{width: 100%;}
-    </style>
-
-    <head>
-
+    <title>Lúciferueb</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://uspdigital.usp.br/comumwebdev/imagens/favicon.ico" rel="icon"
+	type="image/x-icon" />
+</head>
     <body class="flex-col">
         <header class="flex-col">
             <div>
-                <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo.png">
-                <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo-texto.png">
+                <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo.png" id="logo">
+                <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo-texto.png" id="title">
             </div>
-            <hr/>
+            <div id="decoration"></div>
         </header>
-        <div class="flex-row w-100vw">
-            <nav class="flex-col" id="nav">
-                <div class="flex w-100 nav-div">
-                    <ul class="flex-col w-100">
-                        <li id="nav-div-highlight">Público</li>
-                        <li><a>Calendário Escolar</a></li>
-                        <li><a>Curso de ingresso</a></li>
-                        <li><a>Disciplinas</a></li>
-                        <li><a>Editais</a></li>
-                        <li><a>FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="flex w-100 nav-div">
-                    <ul class="flex-col">
-                        <li id="nav-div-highlight">Acesso Restrito</li>
-                        <li><a>Entrar</a></li>
-                        <li><a>Esqueci a Senha</a></li>
-                        <li><a>Primeiro Acesso</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <main class="flex-col">
-               
+        <div class="flex" id="content">
+            <sidebar class="flex flex-col">
+                <nav aria-label="public links">
+                    <input type="checkbox" id="btn_public">
+                       
+                    <ul class="droplist nav-main">
+                    <li class="nav-div-highlight">
+                     <label for="btn_public">Público</label> 
+                    </li>
+                    <li><a>Calendário Escolar 
+                        <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder">
+                    </a>
+                        <ul class="droplist">
+                            <li><a href="">2025</a></li>
+                            <li><a href="">2026</a></li>
+                        </ul>
+                    </li>
+                    <li><a>Curso de ingresso</a></li>
+                    <li><a>Disciplinas <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    <ul class="droplist">
+                            <li><a href="">Busca por Disciplinas</a></li>
+                            <li><a href="">Busca por Turmas</a></li>
+                        </ul></li>
+                    <li><a>Editais <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    <ul class="droplist">
+                            <li><a href="">Programa Unificado de Bolsas(PUB)</a>
+                            <ul class="droplist">
+                            <li><a href="">Edital 2024-2025</a></li>
+                            <li><a href="">Edital 2025-2026</a></li>
+                        </ul>
 
+                            </li>
+                            <li><a href="">PEEG</a></li>
+                            <li><a href="">PAP</a></li>
+                        </ul>
+                    
+                    </li>
+                    <li><a>FAQ <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    
+                    <ul class="droplist">
+                            <li><a href="">Matrícula Interativa <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                            
+                                <ul class="droplist">
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">Informações Gerais</a></li>
+                            <li><a href="">TUTORIAL - NOVA MATRÍCULA</a></li>
+                        </ul>
+                            </li>
+                            <li><a href="">Jupiterweb em Vídeos</a></li>
+                            <li><a href="">Informações gerais sobre a Graduação</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                </nav>
+                <nav aria-label="restricted links">
+                    <input type="checkbox" id="btn_restricted">
+                       
+                    <ul class="droplist nav-main">
+                        <li class="nav-div-highlight"> <label for="btn_restricted">Acesso Restrito</label> </li>
+                    <li><a>Entrar</a></li>
+                    <li><a>Esqueci a Senha</a></li>
+                    <li><a>Primeiro Acesso</a></li>
+                </ul>
+                </nav>
+            </sidebar>
+
+
+
+
+
+
+            <main class="flex flex-col flex-grow center-w">
+                <p id="placeholder2">Login</p>
+                <hr/>
+                <div class="login">
+                <label for="User" class="login-label">Usuário: 
+					<input type="text" id="Input_User" required="required" name="User"> </label>
+                <label for="Password"  class="login-label">Senha:
+					<input type="text" id="Input_Password" required="required" name="Password" > </label>
+                <input type="submit" onclick="Funcao()" value="Entrar">
+                </div>
+                <hr/>
+                <p><a id="contact">Créditos </a> | <a id="contact" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Fale conosco</a></p>
+                <span id="trademark">© 1999 - 2026 - Superintendência de Tecnologia da Informação/USP</span>
             </main>
         </div>
     </body>
