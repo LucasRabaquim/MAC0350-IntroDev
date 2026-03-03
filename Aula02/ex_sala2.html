@@ -3,25 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Casa - JS Parte 1</title>
+    <title>Exercícios - Introdução ao JavaScript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --background-color: #292827;
-            --background-color-light: #e0e0e0;
             --surface-color: #363636;
             --primary-text-color: #e0e0e0;
-            --primary-text-color-light: #292827;
+            --secondary-text-color: #a0a0a0;
             --accent-color-1: #ff690a;
+            --accent-color-2: #ff690a;
             --border-color: #444;
             --code-bg: #404040;
         }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); padding: 2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
-        h1, h3 { color: var(--accent-color-1); }
-        h1 { border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
-        .challenge { background-color: var(--surface-color); border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-        code { background-color: var(--code-bg); padding: 2px 5px; border-radius: 4px; color: var(--accent-color-1); font-family: monospace; }
-        ul { padding-left: 20px; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            padding: 2rem 1.5rem;
+        }
+
+        .container { 
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 { color: var(--accent-color-1); font-weight: 700; }
+        h1 { border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 30px; }
+        
+        .exercise-box {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-color-1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            color: var(--accent-color-2);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+        }
 
         button {
             background-color: var(--code-bg);
@@ -51,68 +81,82 @@
 </head>
 <body>
 
-    <h1>Desafios para Casa: JavaScript Básico</h1>
-    <p>Utilize os conceitos vistos na aula para resolver os desafios abaixo. Você deve escrever o HTML e incluir a tag <code>&lt;script&gt;</code> no próprio arquivo por enquanto.</p>
+<div class="container">
+    <h1>Exercícios Práticos: JavaScript Básico</h1>
+    <p>Utilize a tag <code>&lt;script&gt;</code> no final deste arquivo para escrever a lógica de cada um dos botões abaixo.</p>
 
-    <div class="challenge">
-        <h3>Desafio 1: O Interruptor (Modo Claro/Escuro simples)</h3>
-        <p><strong>Cenário:</strong> Crie um botão e um texto que diz "A luz está APAGADA".</p>
-        <p><strong>Requisitos:</strong></p>
-        <ul>
-            <li>Crie uma função chamada <code>alternarLuz()</code> e coloque no <code>onclick</code> do botão.</li>
-            <li>Use <code>document.querySelector</code> para pegar o texto.</li>
-            <li>Use uma condicional (<code>if</code> e <code>===</code>). Se o texto for "A luz está APAGADA", mude para "A luz está ACESA". Se não, mude de volta para "A luz está APAGADA".</li>
-        </ul>
-        <button onclick="alternarLuz()">A luz está APAGADA</button>
+    <div class="exercise-box">
+        <h3>1. O Primeiro Evento</h3>
+        <p>Crie uma função chamada <code>dispararAlerta()</code> que exiba uma mensagem de boas-vindas usando <code>alert()</code>. Vincule esta função ao clique do botão abaixo.</p>
+        <button onclick="dispararAlerta()">Exibir Alerta</button>
     </div>
 
-    <div class="challenge">
-        <h3>Desafio 2: O Multiplicador</h3>
-        <p><strong>Cenário:</strong> Crie uma variação do contador da aula. Desta vez, vamos multiplicar os números.</p>
-        <p><strong>Requisitos:</strong></p>
-        <ul>
-            <li>Comece com uma variável <code>let valor = 2;</code> e exiba esse número em um <code>&lt;h1&gt;</code>.</li>
-            <li>Crie um botão "Dobrar" com uma função atrelada a ele.</li>
-            <li>Toda vez que clicar, o número deve multiplicar por 2 (ex: <code>valor = valor * 2;</code>) e atualizar a tela.</li>
-            <li><strong>Extra:</strong> Usando <em>Template Literals</em>, se o valor passar de 100, exiba um alerta: <code>`Cuidado, o número ${valor} está ficando muito grande!`</code></li>
-        </ul>
-        <button onclick="multiplicar()">Mudar Texto</button>
-        <h1 id="valor-multiplicar" class="output-text">2</h1>
+    <div class="exercise-box">
+        <h3>2. Loops e Console</h3>
+        <p>Crie uma função chamada <code>contarPares()</code>. Ela deve usar um laço <code>for</code> de 1 a 10 e imprimir no <strong>console do navegador</strong> apenas os números pares. Lembre-se de abrir o F12 para ver o resultado!</p>
+        
+        <br>
+        <button onclick="contarPares()">Imprimir Pares no Console</button>
     </div>
 
-</body>
+    <div class="exercise-box">
+        <h3>3. Manipulando a DOM (querySelector)</h3>
+        <p>Use o <code>document.querySelector</code> para selecionar o texto ao lado do botão. Quando o botão for clicado, mude o <code>innerHTML</code> desse texto para "JavaScript Dominado!".</p>
+        <button onclick="mudarTexto()">Mudar Texto</button>
+        <span id="texto-alvo" class="output-text">Texto Original</span>
+    </div>
+
+    <div class="exercise-box">
+        <h3>4. Condicionais e Tipagem (===)</h3>
+        <p>Crie uma função que verifique o estado do texto abaixo. Se o texto for estritamente igual a "Desligado", mude-o para "Ligado". Caso contrário, mude de volta para "Desligado".</p>
+        <button onclick="alternarEstado()">Alternar (Toggle)</button>
+        <span id="texto-estado" class="output-text">Desligado</span>
+    </div>
+
+    <div class="exercise-box">
+        <h3>5. Contador Dinâmico com Template Literals</h3>
+        <p>Declare uma variável global com valor 10. Toda vez que clicar no botão, diminua 1 do valor e atualize a tela. Use <em>Template Literals</em> para exibir um <code>alert(`Fim do tempo!`)</code> quando chegar a zero.</p>
+        <button onclick="contagemRegressiva()">Diminuir</button>
+        <span id="visor-contador" class="output-text">10</span>
+    </div>
+
+</div>
 
 <script>
+    function dispararAlerta() {
+        alert("Seja Bem-Vinde :)");
+    }
 
-    function alternarLuz() {
-        let challenge = document.querySelector(".challenge");
-        let btn = challenge.querySelector("button");
-        let body = document.querySelector("body");
-        let h1 = document.querySelector("h1");
-        let p = document.querySelector("p");
-        if(btn.innerText === "A luz está APAGADA"){
-            btn.innerText = "A luz está ACESA";
-            body.style.background =  "var(--background-color-light)";
-            h1.style.color = "var(--primary-text-color-light)";
-            p.style.color = "var(--primary-text-color-light)";
-        }
-        else{
-            btn.innerText = "A luz está APAGADA";
-            body.style.background =  "var(--background-color)";
-            h1.style.color = "var(--primary-text-color)";
-            p.style.color = "var(--primary-text-color)";
-        }
+    
+    function contarPares() {
+        for(let i = 2; i <= 10; i+=2)
+            console.log(i);
+    }
+
+    function mudarTexto() {
+        let span = document.querySelector("#texto-alvo")
+        span.innerHTML = "<h1>JavaScript Dominado!</h1>";
+    }
+
+    function alternarEstado() {
+        let btn = document.getElementById("texto-estado");
+        console.log()
+        btn.innerText = (btn.innerText === "Desligado") ?
+           "Ligado" : "Desligado";
     }
 
    
-    let valorContador = 2;
-    function multiplicar() {
-        let contador = document.getElementById("valor-multiplicar");
-        valorContador *= 2;
-        if(valorContador > 100)
-            alert(`Cuidado, o número ${valorContador} está ficando muito grande!`);
+    let valorContador = 10;
+    function contagemRegressiva() {
+        let contador = document.getElementById("visor-contador");
+        if(valorContador === 0) return;
+        valorContador--;
         contador.innerText = valorContador;
+        if(valorContador === 0)
+            alert(`Fim do tempo!`);
     }
 
 </script>
+
+</body>
 </html>

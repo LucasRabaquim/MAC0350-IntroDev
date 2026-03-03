@@ -104,10 +104,6 @@ label[for="btn_restricted"] {
     color: #FFF;
 }
 
-#placeholder {
-    height: 100%;
-    width: auto;
-}
 
 hr {
     width: 95%;
@@ -115,15 +111,15 @@ hr {
     background-color: #222;
 }
 
-#placeholder2 {
+#login-info {
     width: 95%;
 }
 
-#contact {
+.contact {
     color: #91a100
 }
 
-#contact:hover {
+.contact:hover {
     text-decoration: underline;
 }
 
@@ -152,6 +148,10 @@ input {
 }
 
 .droplist{min-width: 180px;}
+
+form{
+    width: 100%;
+}
 
 @media (max-width: 700px) {
 

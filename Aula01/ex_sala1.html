@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lúciferueb</title>
+    <title>Lúciferweb</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://uspdigital.usp.br/comumwebdev/imagens/favicon.ico" rel="icon"
 	type="image/x-icon" />
@@ -27,7 +27,7 @@
                      <label for="btn_public">Público</label> 
                     </li>
                     <li><a>Calendário Escolar 
-                        <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder">
+                        <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" >
                     </a>
                         <ul class="droplist">
                             <li><a href="">2025</a></li>
@@ -35,12 +35,12 @@
                         </ul>
                     </li>
                     <li><a>Curso de ingresso</a></li>
-                    <li><a>Disciplinas <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    <li><a>Disciplinas <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" ></a>
                     <ul class="droplist">
                             <li><a href="">Busca por Disciplinas</a></li>
                             <li><a href="">Busca por Turmas</a></li>
                         </ul></li>
-                    <li><a>Editais <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    <li><a>Editais <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" ></a>
                     <ul class="droplist">
                             <li><a href="">Programa Unificado de Bolsas(PUB)</a>
                             <ul class="droplist">
@@ -54,10 +54,10 @@
                         </ul>
                     
                     </li>
-                    <li><a>FAQ <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                    <li><a>FAQ <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" ></a>
                     
                     <ul class="droplist">
-                            <li><a href="">Matrícula Interativa <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" id="placeholder"></a>
+                            <li><a href="">Matrícula Interativa <img src="https://uspdigital.usp.br/comumwebdev/imagens/icones/11/arrow_sub1.gif" ></a>
                             
                                 <ul class="droplist">
                             <li><a href="">FAQ</a></li>
@@ -89,20 +89,21 @@
 
 
             <main class="flex flex-col flex-grow center-w">
-                <p id="placeholder2">Login</p>
+                <form class="flex flex-col flex-grow center-w">
+                <p id="login-info">Login</p>
                 <hr/>
                 <div class="login">
                 <label for="User" class="login-label">Usuário: 
 					<input type="text" id="Input_User" required="required" name="User"> </label>
                 <label for="Password"  class="login-label">Senha:
 					<input type="text" id="Input_Password" required="required" name="Password" > </label>
-                <input type="submit" onclick="Funcao()" value="Entrar">
+                <input type="submit" onclick="Enviar()" value="Entrar">
                 </div>
                 <hr/>
-                <p><a id="contact">Créditos </a> | <a id="contact" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Fale conosco</a></p>
+                <p><a class="contact">Créditos </a> | <a class="contact" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Fale conosco</a></p>
                 <span id="trademark">© 1999 - 2026 - Superintendência de Tecnologia da Informação/USP</span>
+                </form>
             </main>
         </div>
     </body>
-
 </html>
