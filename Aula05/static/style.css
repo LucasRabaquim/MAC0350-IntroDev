@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: 0;
+    list-style: none;
+}
+label{width: fit-content;}
+
+.flex{ display: flex; }
+.flex-col{ display: flex; flex-direction: column;}
+.flex-row{ display: flex; flex-direction: row;}
+.flex-grow{ flex-grow: 1;}
+
+.vw-100{ width: 100vw;}
+.vw-80{ width: 80vw;}
+.vw-50{ width: 50vw;}
+
+.vh-100{ width: 100vh;}
+.vh-80{ width: 80vh;}
+.vh-50{ width: 50vh;}
+
+.logsign{
+    justify-content: space-around;
+    align-items: center;
+}
+.logsign > *{
+    margin:5px 0 5px 0;
+}
