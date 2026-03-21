@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+       <form class="flex-col logsign">
+            <label>Nome do usuário: <input type="text" id="nome"></label>
+            <label>Senha: <input type="text" id="senha"></label>
+            <input type="button" onclick="login()" value="Entrar">
+            <a href="http://127.0.0.1:8000/">Não tem conta? Se registre</a>
+        </form>
+    </body>
+    <script>
+        async function login() {
+            const dados = {
+                nome: document.getElementById("nome").value,
+                senha: document.getElementById("senha").value,
+                bio: ""
+            };
+            const resposta = await fetch("/login", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            });
+            if(resposta.status == 404){
+                alert("Usuário não registrado");
+            }
+            else if(resposta.ok){
+                const resultado = await resposta.json();
+                alert("Usuário " + resultado.usuario + " logado!");
+                window.location = "http://127.0.0.1:8000/home";
+            }
+            else{
+                alert("Erro ao enviar")
+            }
+        }
+    </script>
+</html>

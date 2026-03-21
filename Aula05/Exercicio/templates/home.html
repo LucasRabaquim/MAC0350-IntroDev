@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h1> Página de perfil</h1>
+
+        {% if user %}
+        <h1>Painel de {{ user.nome }}</h1>
+            <p><span style="font-style: bold;">BIO: </span>{{ user.bio }}</p>
+        {% else %}
+        <p>Por favor, <a href="http://127.0.0.1:8000/login">faça login</a></p>
+        {% endif %}
+    </body>
+</html>
