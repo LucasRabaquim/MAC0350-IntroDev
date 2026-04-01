@@ -1,10 +1,9 @@
 .write-card{
-    width: 80vw;
+    width: 80vw !important;
     height: 40vh;
 }
-
 .write-options > button{
-    width: 15vw;
+    width: 15vw !important;
     margin-left:2vw;
 }
 .write-card > textarea{

@@ -70,5 +70,6 @@
     right:0;
     bottom:0;
     margin:10px;
+    z-index: 50;
     border-radius: 99999px;
 }

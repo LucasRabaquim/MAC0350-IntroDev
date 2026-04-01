@@ -5,30 +5,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anotobolso - bookannotation</title>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
   <link rel="stylesheet" href="../static/global.css" />
   <link rel="stylesheet" href="../static/bookannotation.css" />
+  <link rel="stylesheet" href="../../static/write.css" />
+  <link rel="stylesheet" href="../../static/post.css" />
 </head>
 
-<body >
+<div class="overlay flex flex-col justify-center align-center flex-grow"></div>
+  {% extends "navbar.html" %}
+  {% block main %}
   <div class="book flex flex-col align-center vw-100">
     <img src="https://m.media-amazon.com/images/I/61DjjOWKvoL.jpg" class="size-p">
     <div class="flex flex-row">
 
-    
-        <h1 class="flex flex-row justify-around w-full align-center"><b class="mr-10">Book name</b>
-            <div class="relative">
-              <button popovertarget="book-options" class="three-dots"> <i class="fas fa-ellipsis-v"></i> </button>
-              <div popover id="book-options" class="menu">
-          <button popovertarget="delete-confirmation">Deletar</button>
-          <button>Share annotations</button>
-          <button>Private annotations</button>
+
+      <h1 class="flex flex-row justify-around w-full align-center"><b class="mr-10">Book name</b>
+        <div class="relative">
+          <button popovertarget="book-options" class="three-dots"> <i class="fas fa-ellipsis-v"></i> </button>
+          <div popover id="book-options" class="menu">
+            <button popovertarget="delete-confirmation">Deletar</button>
+            <button>Share annotations</button>
+            <button>Private annotations</button>
+          </div>
         </div>
-            </div>
-        </h1>
-        
-      </div>
-    
+      </h1>
+
+    </div>
+
     <div class="bookinfo flex flex-col w-full">
       <input type="radio" id="book-summary" name="book-info-tab" checked="checked">
       <input type="radio" id="book-data" name="book-info-tab">
@@ -53,34 +58,21 @@
 
     </div>
   </div>
+<button id="write-annotation"
+      hx-get="/write_component?type=annotation"
+      hx-target=".overlay">
+      <i class="fa-solid fa-pencil"></i>
+    </button>
+  <section class="flex flex-col justify-around align-center" id="section-annotation">
 
-  <section class="flex flex-col justify-around align-center">
+    {% for post in annotations %}
 
-    <div class="card annotation flex-col">
-      <div class="flex flex-row justify-around align-center relative">
-        <span>Datetime</span>
-        <span><input type="checkbox" id="heart" checked />
-          <label for="heart" /> : Num likes</span>
-        <span>Public ou privado</span>
-        <button popovertarget="annotation-options" class="three-dots"><i class="fas fa-ellipsis-v"></i></button>
-
-        <div popover id="annotation-options" class="menu">
-          <button popovertarget="delete-confirmation">Deletar</button>
-          <button>Share annotations</button>
-          <button>Private annotations</button>
-        </div>
-      </div>
-      <div class="annotation-text flex flex-col justify-center">
-        Page 40 is my favorite moment
-      </div>
-    </div>
-    
-
-    
-<button id="write-annotation">
-  <i class="fa-solid fa-pencil"></i>
-</button>
+      {% include "post.html" with context %}
+     
+    {% else %}
+      <h1>Crie sua primeira anotação</h1>
+    {% endfor %}
   </section>
-</body>
-
+    
+  {% endblock main %}
 </html>

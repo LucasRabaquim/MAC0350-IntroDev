@@ -1,10 +1,10 @@
 @font-face {
-  font-family: Poppins; /* set name */
-  src: url(Poppins-Regular.ttf); /* url of the font */
+    font-family: Poppins;
+    src: url(./fonts/Poppins-Regular.ttf);
 }
 
 
-:root{
+:root {
     --white: #ebe9fc;
     --black: #050315;
     --alert: #af1a1a;
@@ -19,7 +19,7 @@
     --primary: #2f27ce;
     --secondary: #dedcff;
     --accent: #433bff;
-    --shadow:#0000001f;
+    --shadow: #0000001f;
 }
 
 :root[data-theme="dark"] {
@@ -30,7 +30,7 @@
     --primary: #3a31d8;
     --secondary: #020024;
     --accent: #0600c2;
-    --shadow:#7574741f;
+    --shadow: #7574741f;
 }
 
 * {
@@ -41,19 +41,26 @@
     text-decoration: none;
     list-style: none;
     font-family: "Poppins", sans-serif;
-    color:var(--text);
+    color: var(--text);
     transition: 20ms all ease-in;
 }
-input[type="checkbox"]{display:none;}
-input[type="radio"]{display:none;}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
 
 button {
     border: 0;
     cursor: pointer;
 }
-button:hover{
+
+button:hover {
     background-color: var(--accent);
-    color:var(--white);
+    color: var(--white);
 }
 
 body {
@@ -69,7 +76,8 @@ body {
 .flex {
     display: flex;
 }
-.none{
+
+.none {
     display: none;
 }
 
@@ -83,6 +91,12 @@ body {
 
 .flex-grow {
     flex-grow: 1;
+}
+
+.absolute {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
 }
 
 .justify-center {
@@ -100,15 +114,19 @@ body {
 .justify-evenly {
     justify-content: space-evenly;
 }
-.justify-flex-end{
+
+.justify-flex-end {
     justify-content: flex-end;
 }
-.justify-flex-start{
+
+.justify-flex-start {
     justify-content: flex-start;
 }
-.secondary-text{
+
+.secondary-text {
     color: var(--secondary-text);
 }
+
 .align-center {
     align-items: center;
 }
@@ -137,24 +155,27 @@ body {
     height: 50vh;
 }
 
-.w-full{
+.w-full {
     width: 100%;
 }
 
-.w-80{
+.w-80 {
     width: 80%;
 }
 
-.h-full{
+.h-full {
     height: 100%;
 }
-.w-fit{
+
+.w-fit {
     width: fit-content !important;
 }
-.mr-10{
-    margin-right:10px
+
+.mr-10 {
+    margin-right: 10px
 }
-.center{
+
+.center {
     align-items: center;
     justify-content: center;
     justify-items: center;
@@ -166,7 +187,7 @@ body {
     width: 100vw;
 }
 
-.three-dots{
+.three-dots {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,28 +199,32 @@ body {
     background-color: var(--text);
 }
 
-.white{
+.white {
     color: var(--white) !important;
 }
-.alert{
-    background-color:  var(--alert) !important;
-}
-.alert:hover{
-    background-color:  var(--alert-hover) !important;
+
+.alert {
+    background-color: var(--alert) !important;
 }
 
-.three-dots{
-    border-radius: 9999px !important;
-    background-color: var(--background-secondary)  !important;
+.alert:hover {
+    background-color: var(--alert-hover) !important;
 }
-.three-dots > i{
+
+.three-dots {
+    border-radius: 9999px !important;
+    background-color: var(--background-secondary) !important;
+}
+
+.three-dots>i {
     color: var(--text) !important;
 }
-.three-dots:hover{
+
+.three-dots:hover {
     background-color: var(--accent) !important;
 }
 
-.three-dots:hover > i{
+.three-dots:hover>i {
     color: var(--white) !important;
 }
 
@@ -216,26 +241,28 @@ input[type="checkbox"]:checked + label:before {
 } */
 
 [popover]:popover-open {
-  position: relative;
-  display: flex;
-  inset: unset;
+    position: relative;
+    display: flex;
+    inset: unset;
 }
 
-.menu{
+.menu {
     height: fit-content;
     align-items: center;
     flex-direction: column;
     border: none;
     background-color: var(--background-secondary) !important;
 }
-.menu > button{
+
+.menu>button {
     width: 100% !important;
-    margin:0px !important;
+    margin: 0px !important;
     border-radius: 0px !important;
     background-color: var(--background-secondary) !important;
     color: var(--text) !important;
 }
-.menu > button:hover{
+
+.menu>button:hover {
     background-color: var(--accent) !important;
 }
 
@@ -266,7 +293,18 @@ input[type="checkbox"]:checked + label:before {
     background-color: var(--accent);
 }
 
-textarea{
+textarea {
     resize: none;
+    color: var(--black);
 }
 
+.overlay {
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

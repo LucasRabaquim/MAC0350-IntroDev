@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Não é uma página</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
     <link rel="stylesheet" href="../../static/global.css" />
     <link rel="stylesheet" href="../../static/navbar.css" />
 </head>
@@ -24,10 +25,12 @@
             </li>
             <li>Livros Salvos</li>
             <li>Perfil</li>
-            <li>Seguindo</li>
-            <li>Sair</li>
+            <li>{{ user.username }}</li>
+            <li><a href="/logoff">Sair</a></li>
         </ul>
     </nav>
+    {% block main %}
+    {% endblock main %}
 </body>
 
 </html>
