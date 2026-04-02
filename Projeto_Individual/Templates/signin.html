@@ -11,10 +11,10 @@
     <main class="flex flex-col justify-center align-center flex-grow">
   <div class="card sign-card flex flex-col ">
     <h1>Entrar</h1>
-      <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required />
+      <label for="username">Nome de usuário</label>
+      <input type="text" id="username" name="username" placeholder="JohnStar5" required />
       <label for="password">Senha</label>
-      <input type="password" id="password" name="password" placeholder="********" required minlength="8" />
+      <input type="password" id="password" name="password" placeholder="********" required />
       <button onclick="submit()">Entrar</button>
     <p id="sign-card-link">Ainda não tem conta? <a href="/signup">Cadastre-se</a></p>
   </div>
@@ -37,7 +37,7 @@
     });
     if (response.ok) {
       const result = await response.json();
-      window.location.href = "/profile";
+      window.location.href = "/books";
     }
     else {
       const result = await response.json();

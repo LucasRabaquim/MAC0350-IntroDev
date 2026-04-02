@@ -1,0 +1,35 @@
+<head>
+  <title>Anotobolso - Livros Salvos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+  <link rel="stylesheet" href="../static/global.css" />
+  <link rel="stylesheet" href="../static/bookannotation.css" />
+  <link rel="stylesheet" href="../../static/write.css" />
+  <link rel="stylesheet" href="../../static/post.css" />
+</head>
+
+<div class="overlay flex flex-col justify-center align-center flex-grow"></div>
+  {% extends "navbar.html" %}
+  {% block main %}
+  <div class="book flex flex-col align-center vw-100">
+    
+    {% if username == user.username %}
+    <button id="write-annotation"
+        hx-get="/add_component"
+        hx-target=".overlay"
+        class="font-2">
+       +
+      </button>
+    {% endif %}
+    <section class="flex flex-col justify-around align-center flex-grow" id="section-annotation">
+
+    {% for book in books %}
+
+      {% include "savedBooks.html" with context %}
+     
+    {% else %}
+      <h1>Adicione seu primeiro livro</h1>
+    {% endfor %}
+  </section>
+    
+  {% endblock main %}

@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+  <link rel="stylesheet" href="../../static/global.css" />
+  <link rel="stylesheet" href="../../static/post.css" />
+
+  <div class="card post flex-col" id="book-{{ book.id }}" onClick="window.location.href = '/annotation/{{ book.id }}'">
+    <div class="flex flex-row justify-around align-center relative">
+      <span>{{ book.title }}</span>
+      <span>{{ book.author }}</span>
+      <span>{{ user.name }}@<span class="secondary-text">{{ user.username }}</span></span>
+        <span><input type="checkbox" name="visibility" id="visibility-setting" disabled {% if book.public %}checked{% endif %} />
+        <label for="visibility-setting"></label></span>
+        
+        <button class="three-dots" hx-on:click="event.stopPropagation()" hx-get="/book_options_component?id={{ book.id }}" ><i class="fas fa-ellipsis-v"></i></button>
+    </div>
+    <div class="post-text flex flex-col justify-center">
+      {{ book.summary }}
+    </div>
+  </div>

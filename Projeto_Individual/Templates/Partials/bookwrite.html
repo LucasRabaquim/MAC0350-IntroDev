@@ -1,0 +1,36 @@
+<head>
+  <title>{% if book.text != ""  %} Atualizar {% else %} Adicionar {% endif %} livro - AnotoBolso</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+  <link rel="stylesheet" href="../../static/global.css" />
+  <link rel="stylesheet" href="../../static/write.css" />
+</head>
+    <div class="card flex flex-col justify-between write-card">
+      <div class="flex flex-row justify-between w-100">
+        <h1>Adicione seu livro</h1>
+        <span><input type="checkbox" name="visibility" id="visibility-setting" 
+          {% if book.public %} checked {% endif %} />
+        <label for="visibility-setting"></label></span>
+      </div>
+      <label for="title">Título do livro</label>
+      <input type="text" id="title" name="title" placeholder="O Retrato de Dorian Gray" required 
+      value="{{ book.title }}"/>
+      <label for="author">Autor(a) do livro</label>
+      <input type="text" id="author" name="author" placeholder="Oscar Wilde" required
+      value="{{ book.author }}"/>
+      <label for="summary"> Sumário (opcional)</label>
+      <textarea name="summary" id="summary">{{ book.summary }}</textarea>
+
+      <div class="flex flex-row write-options justify-flex-end">
+        <button class="alert" hx-get="" hx-target=".write-card" hx-swap="delete">Cancelar</button>
+        {% if book.title != ""  %}
+          <button hx-put="/books/{{ book.id }}"  hx-include="#title, #author, #summary, #visibility-setting" hx-target="#book-{{book.id}}" hx-swap="outerHTML"
+          hx-on::after-request="if(event.detail.successful) document.querySelector('.write-card').remove()">Atualizar</button>
+        {% else %}
+          <button hx-post="/books"  hx-include="#title, #author, #summary, #visibility-setting" hx-target="#section-annotation" hx-swap="afterbegin"
+          hx-on::after-request="if(event.detail.successful) document.querySelector('.write-card').remove()"
+          >Enviar</button>
+        {% endif %}
+      </div>
+    </div>
+  

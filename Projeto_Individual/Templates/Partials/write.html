@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anotobolso - Signin</title>
+  <title>{% if annotation.text != ""  %} Atualizar {% else %} Criar {% endif %} anotação - AnotoBolso</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
   <link rel="stylesheet" href="../../static/global.css" />
@@ -12,20 +12,21 @@
 </head>
     <div class="card flex flex-col justify-between write-card">
       <div class="flex flex-row justify-between w-100">
-        <h1>Escreva {% if type == "annotation" %}
-          sua anotação
-          {% else %}
-          seu comentário
-          {% endif %}
-        </h1>
-        <input type="checkbox" id="visibility-setting" name="visibility" />
-        <label for="visibility-setting"></label>
+        <h1>Escreva sua anotação</h1>
+        <span><input type="checkbox" id="visibility-setting" name="visibility"
+          {% if annotation.public %} checked {% endif %} />
+        <label for="visibility-setting"></label></span>
       </div>
-      <textarea name="text" id="text">
-      </textarea>
+      <textarea name="text" id="text">{{ annotation.text }}</textarea>
 
       <div class="flex flex-row write-options justify-flex-end">
         <button class="alert" hx-get="" hx-target=".write-card" hx-swap="delete">Cancelar</button>
-        <button hx-post="/{{ type }}"  hx-include="#text, #visibility-setting" hx-target="#section-annotation" hx-swap="afterbegin">Enviar</button>
+        {% if annotation.text != ""  %}
+          <button hx-put="/annotation/{{ annotation.id }}"  hx-include="#text, #visibility-setting" hx-target="#annotation-{{annotation.id}}" hx-swap="outerHTML"
+          hx-on::after-request="if(event.detail.successful) document.querySelector('.write-card').remove()">Atualizar</button>
+        {% else %}
+          <button hx-post="/annotation?book_id={{id}}"  hx-include="#text, #visibility-setting, #id" hx-target="#section-annotation" hx-swap="afterbegin"
+          hx-on::after-request="if(event.detail.successful) document.querySelector('.write-card').remove()">Enviar</button>
+        {% endif %}
       </div>
     </div>

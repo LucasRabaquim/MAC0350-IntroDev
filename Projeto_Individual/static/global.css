@@ -20,6 +20,7 @@
     --secondary: #dedcff;
     --accent: #433bff;
     --shadow: #0000001f;
+    --strong-shadow:rgba(0, 0, 0, 0.256)f;
 }
 
 :root[data-theme="dark"] {
@@ -31,6 +32,7 @@
     --secondary: #020024;
     --accent: #0600c2;
     --shadow: #7574741f;
+    --strong-shadow: #75747452;
 }
 
 * {
@@ -52,6 +54,12 @@ input[type="checkbox"] {
 input[type="radio"] {
     display: none;
 }
+input[type="text"] {
+    color:var(--black)
+}
+input[type="password"] {
+    color:var(--black)
+}
 
 button {
     border: 0;
@@ -71,8 +79,13 @@ body {
     min-height: 100vh;
 }
 
-
-
+.min-screen-50{
+    min-height: 50vh;
+    height: auto;
+}
+.font-2{
+    font-size:2rem
+}
 .flex {
     display: flex;
 }

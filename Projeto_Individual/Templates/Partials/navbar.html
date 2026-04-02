@@ -19,12 +19,22 @@
         <ul class="flex flex-row justify-around w-fit h-full navbar-links">
             <li class="w-fit">
                 <div class="search-bar justify-evenly">
-            <input type="search" placeholder="Busque um livro" class="search-input"/> <button type="submit" class="search-button">
+            
+                <input type="search" placeholder="Busque um usuário" 
+                hx-get="/users"
+                hx-trigger="input changed delay:500ms"
+                hx-target="#div-usuarios"
+                hx-select="#div-usuarios"
+                class="search-input"
+                id="search-user"
+                name="name"/>
+                <button type="submit" class="search-button"
+                onclick="searchUser()">
                 <i class="fa fa-search"></i></button>
             </div>
             </li>
-            <li>Livros Salvos</li>
-            <li>Perfil</li>
+            <li><a href="/books">Livros Salvos</a></li>
+            <!-- <li>Perfil</li> -->
             <li>{{ user.username }}</li>
             <li><a href="/logoff">Sair</a></li>
         </ul>
@@ -32,5 +42,10 @@
     {% block main %}
     {% endblock main %}
 </body>
-
+<script>
+    function searchUser(){
+        const name = document.getElementById("search-user").value;
+        window.location.href = "/users?page=0&name="+name;
+    }
+</script>
 </html>

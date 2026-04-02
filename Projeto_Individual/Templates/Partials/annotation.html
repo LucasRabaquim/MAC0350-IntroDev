@@ -13,21 +13,23 @@
 
 <body>
 
-  <div class="card post flex-col">
+  <div class="card post flex-col" id="annotation-{{ annotation.id }}">
     <div class="flex flex-row justify-around align-center relative">
-      <span>{{ post.id }}</span>
+      <span>{{ annotation.date }} </span>
       <span>{{ user.name }}@<span class="secondary-text">{{ user.username }}</span></span>
-      <span><input type="checkbox" id="heart" />
-        <label for="heart" />: likes</span>
-      <span><input type="checkbox" id="visibility-setting" disabled />
-        <label for="visibility-setting"></label></span>
       
-        <button class="three-dots" hx-get="/post_options_component?type={{ type }}"  ><i class="fas fa-ellipsis-v"></i></button>
+      
+      
+        <span><input type="checkbox" name="visibility" id="visibility-setting" disabled {% if annotation.public %}checked{% endif %} />
+        <label for="visibility-setting"></label></span>
+    
+      
+        <button class="three-dots" hx-get="/annotation_options_component?id={{ annotation.id }}" ><i class="fas fa-ellipsis-v"></i></button>
 
 
     </div>
     <div class="post-text flex flex-col justify-center">
-      {{ post.text }}
+      {{ annotation.text }}
     </div>
   </div>
 

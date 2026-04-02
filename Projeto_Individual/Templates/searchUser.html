@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+  <link rel="stylesheet" href="../../static/global.css" />
+  <link rel="stylesheet" href="../../static/post.css" />
+</head>
+{% extends "navbar.html" %}
+  {% block main %}
+<div id="div-usuarios" class="flex flex-col flex-grow vw-100 align-center justify-around">
+    {% for db_user in users %}
+    <div class="card post flex-col" id="user-{{ db_user.id }}" onClick="window.location.href = '/books/{{ db_user.username }}'">
+        <div class="flex flex-row justify-around align-center relative">
+        <span>{{ db_user.name }}@<span class="secondary-text">{{ db_user.username }}</span></span>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if last_page == False %}
+    <div hx-get="/users?page={{ page + 1}}&name={{name}}"
+         hx-trigger="intersect"
+         hx-target="this"
+         hx-swap="outerHTML"
+         hx-select="#div-usuarios > *"
+         hx-push-url="true">
+    </div>
+    {% endif %}
+    
+</div>
+  {% endblock main %}

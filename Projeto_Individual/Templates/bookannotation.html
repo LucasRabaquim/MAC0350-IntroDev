@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anotobolso - bookannotation</title>
+  <title>Anotobolso - {{ book.title }}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
   <link rel="stylesheet" href="../static/global.css" />
@@ -12,62 +8,67 @@
   <link rel="stylesheet" href="../../static/write.css" />
   <link rel="stylesheet" href="../../static/post.css" />
 </head>
-
-<div class="overlay flex flex-col justify-center align-center flex-grow"></div>
-  {% extends "navbar.html" %}
+{% extends "navbar.html" %}
   {% block main %}
+<div class="overlay flex flex-col justify-center align-center flex-grow"></div>
+  
   <div class="book flex flex-col align-center vw-100">
-    <img src="https://m.media-amazon.com/images/I/61DjjOWKvoL.jpg" class="size-p">
+    <!-- <img src="" class="size-p"> -->
     <div class="flex flex-row">
 
-
-      <h1 class="flex flex-row justify-around w-full align-center"><b class="mr-10">Book name</b>
-        <div class="relative">
+      <h1 class="flex flex-row justify-around w-full align-center"><b class="mr-10">
+        {{ book.title }}</b>
+        <!-- <div class="relative">
           <button popovertarget="book-options" class="three-dots"> <i class="fas fa-ellipsis-v"></i> </button>
           <div popover id="book-options" class="menu">
             <button popovertarget="delete-confirmation">Deletar</button>
             <button>Share annotations</button>
             <button>Private annotations</button>
           </div>
-        </div>
+        </div> -->
       </h1>
 
     </div>
 
     <div class="bookinfo flex flex-col w-full">
-      <input type="radio" id="book-summary" name="book-info-tab" checked="checked">
-      <input type="radio" id="book-data" name="book-info-tab">
+      {% if book.summary != ""%}
+        <input type="radio" id="book-summary" name="book-info-tab">
+      {% endif %}
+      <input type="radio" id="book-data" name="book-info-tab" checked="checked">
       <div class="flex flex-row justify-evenly w-fill">
-        <label for="book-summary" class="book-tab">Summary</label>
-        <label for="book-data" class="book-tab">Information</label>
+        {% if book.summary != ""%}
+        <label for="book-summary" class="book-tab">Sumário</label>
+        {% endif %}
+        <label for="book-data" class="book-tab">Informações</label>
       </div>
       <div id="summary-div" class="book-info-tab">
-        <p>Text about the book</p>
+        <p>Sumário: {{ book.summary }}</p>
       </div>
       <div id="info-div" class="book-info-tab">
-
-        <div id="bookinfo_ISBN10"><b>ISBN 10:</b> </div>
+        <div><b> Autor: </b> {{ book.author }}</div>
+        <!-- <div id="bookinfo_ISBN10"><b>ISBN 10:</b> </div>
         <div id="bookinfo_ISBN13"><b>ISBN 10:</b> </div>
         <div id="bookinfo_Author"><b>Autor(a)</b> </div>
         <div id="bookinfo_title"><b>Título:</b> </div>
         <div id="bookinfo_publisher""><b>Editora:</b> </div>
         <div id=" bookinfo_pages"><b>Página:</b> </div>
         <div id="bookinfo_publish_day"><b>Lançamento:</b> </div>
-        <div id="bookinfo_genre"><b>Gênero:</b> </div>
+        <div id="bookinfo_genre"><b>Gênero:</b> </div> -->
       </div>
 
     </div>
   </div>
+
 <button id="write-annotation"
-      hx-get="/write_component?type=annotation"
+      hx-get="/write_component?book_id={{book.id}}"
       hx-target=".overlay">
       <i class="fa-solid fa-pencil"></i>
     </button>
-  <section class="flex flex-col justify-around align-center" id="section-annotation">
+  <section class="flex flex-col justify-around align-center flex-grow" id="section-annotation">
 
-    {% for post in annotations %}
+    {% for annotation in annotations %}
 
-      {% include "post.html" with context %}
+      {% include "annotation.html" with context %}
      
     {% else %}
       <h1>Crie sua primeira anotação</h1>
