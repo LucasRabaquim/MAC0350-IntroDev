@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlmodel import SQLModel, Session, create_engine, delete, select
-from models import Annotation, Book, Cookies, User
+from models import Annotation, Book, Cookies, Following, User
 
 ### Inicializações do banco de dados
 @asynccontextmanager
@@ -33,7 +33,7 @@ def select_user_by_username(username:str):
     with Session(engine) as session:
         query = select(User).where(User.username == username)
         return session.exec(query).first()
-    
+
 # Busca usuário pelo id
 # Entrada: id do usuário
 # Saida: usuário com o id especificado
@@ -129,7 +129,7 @@ def create_book(book:Book):
 # Atualiza um livro
 # Entrada: livro
 # Saida: nenhuma
-def update_book(book:Book, newBook):
+def update_book(book:Book, newBook:Book):
     with Session(engine) as session:
         book.title = newBook.title
         book.author = newBook.author
@@ -158,6 +158,43 @@ def select_books_by_username(username:str, user:User):
         query = select(Book).where(Book.user_id == owner.id, Book.public == True).order_by(Book.date.desc())
     with Session(engine) as session:
         return session.exec(query).all()
+
+# Verifica se um usuário segue o outro
+# Entrada: username do usuário, id de um usuário
+# Saida: booleano se o usuário com username espeficicado segue o usuário com id especificado
+def select_is_following_by_username(id: int, username:str):
+    with Session(engine) as session:
+        query = select(Following).where(Following.username == username, Following.user_id == id)
+        return (session.exec(query).first() != None)
+    
+
+# Busca seguintes pelo username do usuário
+# Entrada: username do usuário, usuário
+# Saida: Os usuários que o usuário username espeficicado seguem
+def select_following_by_username(username:str):
+    user = select_user_by_username(username)
+    with Session(engine) as session:
+        query = select(User).join(Following, Following.username == User.username).where(Following.user_id == user.id)
+        return session.exec(query).all()
+
+# Faz com que o usuário com id especificado siga o usuário com username especificado
+# Entrada: id do usuário seguidor, username do usuário seguinte
+def create_follow(id:int, username:str):
+    with Session(engine) as session:
+        following = Following()
+        following.user_id = id
+        following.username = username
+        session.add(following)
+        session.commit()
+        session.refresh(following)
+
+# Faz com que o usuário com id especificado pare de seguir o usuário com username especificado
+# Entrada: id do usuário seguidor, username do usuário seguinte
+def delete_unfollow(id:int, username:str):
+    with Session(engine) as session:
+        query = delete(Following).where(Following.user_id == id, Following.username == username)
+        session.exec(query)
+        session.commit()
 
 
 # Verifica se o usuário está logado e envia para a página mais relevante
@@ -244,10 +281,27 @@ async def search(request: Request, response: Response,cookies: Annotated[Cookies
 limit = 5
 @app.get("/users", tags=["search"])
 async def get_users(request: Request, response: Response, cookies: Annotated[Cookies, Cookie()],name:str = "", page:int = 0):
-    with Session(engine) as session:
-        user = get_logged_user(cookies)
-        users = select_all_users_by_name(name,page,limit)
-        return templates.TemplateResponse(request, "searchUser.html", context={"users":users, "name":name,"last_page" : len(users) < limit, "user":user,"page":page})
+    user = get_logged_user(cookies)
+    users = select_all_users_by_name(name,page,limit)
+    return templates.TemplateResponse(request, "searchUser.html", context={"users":users, "name":name,"last_page" : len(users) < limit, "user":user,"page":page})
+
+
+### Requisições de seguintes
+# Retorna página com usuários que o usuário com username especificado segue
+@app.get("/following/{username}", tags=["following"])
+async def get_following(request: Request, response: Response, cookies: Annotated[Cookies, Cookie()],username:str = "", page:int = 0):
+    user = get_logged_user(cookies)
+    users = select_following_by_username(username)
+    return templates.TemplateResponse(request, "following.html", context={"users":users, "name":username,"last_page" : len(users) < limit, "user":user,"page":page})
+
+# Faz o usuário seguir ou parar de seguir outro
+@app.post("/follow/{username}", tags=["following"])
+async def follow(username:str, request: Request, response: Response,cookies: Annotated[Cookies, Cookie()], follow : Annotated[str | None, Form()] = None):
+    user = get_logged_user(cookies)
+    if(follow != None):
+        delete_unfollow(user.id,username)
+    else:
+        create_follow(user.id,username)
 
 
 ### Requisições voltadas as anotações
@@ -264,7 +318,8 @@ async def get_user_book_page(username:str, request: Request, cookies: Annotated[
     user = get_logged_user(cookies)
     books = select_books_by_username(username, user)
     owner = select_user_by_username(username)
-    return templates.TemplateResponse(request, "books.html", context={"username":username,"user":user,"books":books,"owner":owner})
+    following = select_is_following_by_username(user.id, username);
+    return templates.TemplateResponse(request, "books.html", context={"username":username,"user":user,"books":books,"owner":owner,"following":following})
 
 # Envia dados para criação de um livro
 @app.post("/books", tags=["books"], status_code = status.HTTP_201_CREATED)

@@ -331,3 +331,7 @@ textarea {
     z-index: -1;
     position: absolute;
 }
+.screen-fit{
+    min-width: 100vw;
+    width: fit-content;
+}

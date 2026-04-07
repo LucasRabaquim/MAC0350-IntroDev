@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="vw-100 flex flex-row justify-between align-center navbar">
+    <nav class="screen-fit flex flex-row justify-between align-center navbar">
         <a class="h-full"><img src="../../static/images/Anoto_LogoWhite2.png" class="logo" onclick="changeMode()"></a>
         <input type="checkbox" id="btn_hamburger">
         <label for="btn_hamburger" class="none">☰</label>
@@ -27,7 +27,7 @@
                 </div>
             </li>
             <li><a href="/books">Livros Salvos</a></li>
-            <li>{{ user.username }}</li>
+            <li><a href="/following/{{user.username}}">{{ user.username }}</a></li>
             <li><a href="/logoff">Sair</a></li>
         </ul>
     </nav>

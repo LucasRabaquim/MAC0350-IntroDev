@@ -12,7 +12,13 @@
 {% extends "navbar.html" %}
   {% block main %}
   <div class="book flex flex-col align-center vw-100 flex-grow">
-    
+    <h1 class="flex flex-row vw-100 justify-center align-center" id="user-page-header"> Página de {{ username }}   
+      {% if username != user.username %}
+       <span><input type="checkbox" name="follow" id="following-setting" {% if following %} checked {%
+        endif %} />
+      <label for="following-setting" hx-post="/follow/{{username}}" hx-include="#following-setting" hx-trigger="click" hx-swap="none"></label></span>
+       {% endif %}
+    </h1>
     {% if username == user.username %}
     <button id="write-annotation"
         hx-get="/add_component"
@@ -27,7 +33,11 @@
       {% include "savedBooks.html" with context %}
      
     {% else %}
+      {% if username == user.username  %}
       <h1 hx-get="" hx-trigger="htmx:afterSwap from:#section-annotation" hx-target="this" hx-swap="delete">Adicione seu primeiro livro</h1>
+      {% else %}
+            <h1>{{ username }} não adicionou nenhum livro</h1>
+      {% endif %}
     {% endfor %}
   </section>
     

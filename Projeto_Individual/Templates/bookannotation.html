@@ -51,7 +51,14 @@
   {% include "annotation.html" with context %}
 
   {% else %}
-  <h1 hx-get="" hx-trigger="htmx:afterSwap from:#section-annotation" hx-target="this" hx-swap="delete">Crie sua primeira anotação</h1>
+
+   {% if owner.id == user.id   %}
+        <h1 hx-get="" hx-trigger="htmx:afterSwap from:#section-annotation" hx-target="this" hx-swap="delete">Crie sua primeira anotação</h1>
+
+      {% else %}
+            <h1>{{ owner.username }} não criou nenhuma anotação</h1>
+      {% endif %}
+
   {% endfor %}
 </section>
 

@@ -68,3 +68,23 @@
     z-index: 50;
     border-radius: 99999px;
 }
+#following-setting+ label{
+    margin-left: 2vw;
+}
+
+#following-setting + label:before {
+    content: "\f004 Seguir";
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 400 !important; 
+    color:var(--text);
+}
+#following-setting:checked + label:before {
+    content: "\f004 Seguindo";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900 !important; 
+    color:var(--text);   
+}
+#user-page-header{
+    height: 8vh;
+    background-color: var(--secondary);
+}
